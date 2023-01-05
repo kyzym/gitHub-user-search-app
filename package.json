@@ -2,7 +2,7 @@
   "name": "ts-course-proj-2",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kyzym.github.io//",
+  "homepage": "https://kyzym.github.io/gitHub-user-search-app/",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
