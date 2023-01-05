@@ -22,6 +22,7 @@ export const Search = ({ hasError, onSubmit }: SearchProps) => {
     if (!textUserName.trim()) return toast.error("Please write something!");
 
     onSubmit(textUserName);
+
     form.reset();
   };
 
