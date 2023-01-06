@@ -17,11 +17,7 @@ export const UserTitle = ({ created, login, name }: UserTitleProps) => {
   return (
     <div className={styles.userTitle}>
       <h2>{name}</h2>
-      <a
-        href={`${gitHibUrlFirstPart}${login}`}
-        target="_blank"
-        rel="noreferrer"
-      >
+      <a href={gitHibUrlFirstPart + login} target="_blank" rel="noreferrer">
         <h3>{login}</h3>
       </a>
       <span>{joinedDate}</span>
