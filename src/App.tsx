@@ -2,7 +2,7 @@ import { Container } from "components/Container";
 import { Search } from "components/Search";
 import { Header } from "components/TheHeader";
 import { UserCard } from "components/UserCard";
-import { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import { defaultUser } from "mock";
 import { GithubError, GithubUser, LocalGithubUser } from "types";
 import { useState } from "react";
@@ -15,16 +15,19 @@ function App() {
   const [user, setUser] = useState<LocalGithubUser | null>(defaultUser);
 
   const fetchUser = async (userName: string) => {
+    if (user?.login === userName)
+      return toast("🧐 Try to search another person except ", {
+        duration: 1500,
+      });
+
     const url = BASE_URL + userName;
-
     const res = await fetch(url);
-    const user = (await res.json()) as GithubUser | GithubError;
+    const userRes = (await res.json()) as GithubUser | GithubError;
 
-    if (isGithubUser(user)) {
-      setUser(extractLocalUser(user));
-    } else {
-      setUser(null);
+    if (!isGithubUser(userRes)) {
+      return setUser(null);
     }
+    setUser(extractLocalUser(userRes));
   };
 
   return (
